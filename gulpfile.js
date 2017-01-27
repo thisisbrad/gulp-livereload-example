@@ -3,6 +3,9 @@ var gulp        = require('gulp'),
     connect 		= require('gulp-connect'),
     plumber     = require('gulp-plumber'),
     notify      = require('gulp-notify'),
+    htmllint    = require('gulp-htmllint'),
+    csslint    = require('gulp-csslint'),
+    gutil       = require('gulp-util'),
     nodemon     = require('gulp-nodemon'),
     jshint      = require('gulp-jshint'),
     lrPort      = 35729;
@@ -22,6 +25,16 @@ var paths = {
   	'./src/css/*.css'
   ]
 };
+
+function htmllintReporter(filepath, issues) {
+  if (issues.length > 0) {
+    issues.forEach(function (issue) {
+      gutil.log(gutil.colors.cyan('[gulp-htmllint] ') + gutil.colors.white(filepath + ' [' + issue.line + ',' + issue.column + ']: ') + gutil.colors.red('(' + issue.code + ') ' + issue.msg));
+    });
+
+    process.exitCode = 1;
+  }
+}
 
 gulp.task('serve', function(){
   nodemon({'script': './server.js'});
@@ -52,6 +65,13 @@ gulp.task('js:build', function(){
     .pipe(notify({message: 'JS concated'}));
 });
 
+gulp.task('html:lint', function(){
+  return gulp.src(paths.html)
+    .pipe(plumber())
+    .pipe(htmllint({}, htmllintReporter))
+    .pipe(notify({message: 'HTML-lint done'}));
+});
+
 gulp.task('html:build', function(){
   return gulp.src(paths.html)
   	.pipe(plumber())
@@ -59,6 +79,13 @@ gulp.task('html:build', function(){
     .pipe(connect.reload())
     .pipe(notify({message: 'HTML pages built'}))
 
+});
+
+gulp.task('css:lint', function(){
+  return gulp.src(paths.styles)
+    .pipe(csslint())
+    .pipe(csslint.formatter(require('csslint-stylish')))
+    .pipe(notify({message: 'CSS done'}));
 });
 
 gulp.task('css:build', function(){
@@ -71,9 +98,9 @@ gulp.task('css:build', function(){
 gulp.task('build', ['html:build', 'js:build', 'css:build']);
 
 gulp.task('watch', function(){
-  gulp.watch(paths.html, ['html:build']);
+  gulp.watch(paths.html, ['html:lint', 'html:build']);
   gulp.watch(paths.scripts, ['js:lint', 'js:build']);
-  gulp.watch(paths.styles, ['css:build']);
+  gulp.watch(paths.styles, ['css:lint', 'css:build']);
 });
 
 gulp.task('default', ['build', 'connect', 'serve', 'watch']);
