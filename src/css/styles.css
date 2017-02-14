@@ -1,11 +1,16 @@
 html { 
   background: linear-gradient(
     teal, #f06d06
+<<<<<<< HEAD
   ) no-repeat center center fixed; 
+=======
+  ) no-repeat center center fixed;
+>>>>>>> 4027bbaff40ff62fa7fe40b2db467ddf18966bbd
   background-size: cover;
 }
 
 h1 {
 	color: teal;
 	padding: 50px;
+	margin-bottom: 1000px;
 }
