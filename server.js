@@ -1,8 +1,8 @@
-var express    = require('express')
-var morgan     = require('morgan')
-var livereload = require('connect-livereload')
+const express    = require('express')
+const morgan     = require('morgan')
+const livereload = require('connect-livereload')
 
-var app = express()
+const app = express()
 
 app.use(livereload({
   port: 35729,
@@ -16,6 +16,6 @@ app.get('*', function(req, res, next){
 	res.sendFile(__dirname + '/public/index.html')
 })
 
-var server = app.listen(process.env.PORT || 3000, function() {
+const server = app.listen(process.env.PORT || 3000, function() {
 	console.log(`### Server is listening on PORT: ${server.address().port} ###`)
 })
