@@ -1,7 +1,7 @@
 {
-  "name": "run",
+  "name": "Gulp LiveReload Example",
   "version": "1.0.0",
-  "description": "",
+  "description": "Gulp LiveReload",
   "main": "server.js",
   "dependencies": {
     "express": "^4.14.0"
@@ -19,8 +19,20 @@
     "morgan": "^1.7.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Brad Beltowski",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thisisbrad/gulp-livereload-example.git"
+  },
+  "keywords": [
+    "Gulp"
+  ],
+  "bugs": {
+    "url": "https://github.com/thisisbrad/gulp-livereload-example/issues"
+  },
+  "homepage": "https://github.com/thisisbrad/gulp-livereload-example#readme"
 }

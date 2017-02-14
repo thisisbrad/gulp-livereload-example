@@ -1,13 +1,13 @@
-var gulp        = require('gulp'),
-    concat      = require('gulp-concat'),
-    connect 		= require('gulp-connect'),
-    plumber     = require('gulp-plumber'),
-    notify      = require('gulp-notify'),
-    nodemon     = require('gulp-nodemon'),
-    jshint      = require('gulp-jshint'),
-    lrPort      = 35729;
+const gulp    = require('gulp');
+const concat  = require('gulp-concat');
+const connect = require('gulp-connect');
+const plumber = require('gulp-plumber');
+const notify  = require('gulp-notify');
+const nodemon = require('gulp-nodemon');
+const jshint  = require('gulp-jshint');
+const lrPort  = 35729;
 
-var paths = {
+const paths = {
   assets: ['./src/assets/'],
   scripts: [
     './src/js/main.js',
