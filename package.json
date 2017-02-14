@@ -7,6 +7,7 @@
     "express": "^4.14.0"
   },
   "devDependencies": {
+    "connect-livereload": "^0.6.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-connect": "^5.0.0",
